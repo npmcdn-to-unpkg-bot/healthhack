@@ -1,12 +1,10 @@
-<div
-        *ngFor="let question of questionList"
-        class="panel panel-default">
-    <ul>
-        <li
-                (click)="onClick($event)"
+<div class="panel panel-default">
+    <ul style="padding-left: 5px" >
+        <li *ngFor="let question of questionList" style="list-style-type: none; padding-left: 0"
+            (click)="onClick($event)"
                 id="{{question._id}}"
                 class="panel-heading questionHeading">
-            {{ question._id }}
+            {{ question.question }}
         </li>
     </ul>
 
