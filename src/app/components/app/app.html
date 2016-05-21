@@ -5,9 +5,17 @@
             [questionList]="questionList"></questionList>
     </div>
     <div class="myRightContainer">
-        <question [questionId]="selectedQuestion">
-
-        </question>
+        <div class="messageDisplay">
+                <question [questionId]="selectedQuestion"></question>
+        </div>
+        <div class="responseInput">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Please type an answer or select a proposal...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Reply</button>
+                  </span>
+            </div>
+        </div>
     </div>
 </div>
 {{ selectedQuestion | json }}

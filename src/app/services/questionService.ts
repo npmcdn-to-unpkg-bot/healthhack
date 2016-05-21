@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class QuestionService {
-    private _baseApi: string = 'http://139.59.152.219:3000/bot/';
+    private _baseApi: string = 'http://139.59.152.219:3000/bot';
 
     constructor(private _http: Http) {
     }

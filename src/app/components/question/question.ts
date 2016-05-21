@@ -14,12 +14,27 @@ export class QuestionComponent implements OnChanges{
     @Input()questionId = null;
     question = {};
 
-    constructor(private _questionService: QuestionService) {}
+
+    constructor(private _questionService: QuestionService) {
+    }
 
     ngOnChanges(){
         this._questionService.getQuestionById(this.questionId)
             .subscribe(question => {
-                console.log("call")
+                console.log(
+                    question,
+                    question.message
+                );
+                if (question.message) {
+                    this.question = {
+                        question : {
+                            question : {
+                                text : "this should never appear"
+                            }
+                        }
+                    }
+                }
+                console.log("call: ", question)
                 this.question = question;
             });
     }
