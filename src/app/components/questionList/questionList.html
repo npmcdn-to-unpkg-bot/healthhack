@@ -1,7 +1,13 @@
-<div class="panel panel-default">
-    <div
+<div
         *ngFor="let question of questionList"
-        class="panel-heading">
-        {{ question.question }}
-    </div>
+        class="panel panel-default">
+    <ul>
+        <li
+                (click)="onClick($event)"
+                id="{{question._id}}"
+                class="panel-heading questionHeading">
+            {{ question._id }}
+        </li>
+    </ul>
+
 </div>

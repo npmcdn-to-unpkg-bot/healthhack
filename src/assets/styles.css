@@ -10,6 +10,7 @@
 .myLeftContainer,.myRightContainer {
     width: 45vw;
     margin: 5vh 5vw;
+    overflow: scroll;
 }
 
 .myLeftContainer {
@@ -20,4 +21,8 @@
 .myRightContainer {
     border: 1px blue solid;
     order: 2;
+}
+
+.questionHeading {
+    cursor:hand;
 }

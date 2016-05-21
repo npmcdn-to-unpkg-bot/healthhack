@@ -22,8 +22,15 @@ export class AppComponent implements OnInit{
     ngOnInit(){
         this.getQuestionList().subscribe(list => {
             this.questionList = list;
-            console.log(this.questionList);
         });
+    }
+
+
+    onSelectQuestion(question) {
+        console.log(question)
+        this.selectedQuestion = question.selectedQuestion;
+        console.log(this.selectedQuestion)
+
     }
 
     public getQuestionList() {

@@ -1,12 +1,17 @@
 <div class="myContainer">
     <div class="myLeftContainer">
-        <questionList [questionList]="questionList"></questionList>
+        <questionList
+            (questionSelect)="onSelectQuestion($event)"
+            [questionList]="questionList"></questionList>
     </div>
     <div class="myRightContainer">
-
+        <div class="mySelectedQuestion">
+            {{ question }}
+        </div>
     </div>
 </div>
-
+{{ selectedQuestion | json }}
+{{ questionList | json}}
 <!--
         <pc-message-list></pc-message-list>
         <pc-chat-form></pc-chat-form>
