@@ -36,9 +36,22 @@
     overflow: scroll;
 }
 
+.question, .response {
+    padding: 10px;
+    width:55%;
+    border-radius: 30%;
+    margin: 5px;
+}
+
 .question {
-    width:70%;
-    background-color: #0000ee;
+    background-color: #1b8dbb;
+
+}
+
+.response {
+    background-color: #f47c3c;
+    float: right;
+    cursor:hand;
 }
 
 .responseInput {

@@ -6,7 +6,9 @@
     </div>
     <div class="myRightContainer">
         <div class="messageDisplay">
-                <question [questionId]="selectedQuestion"></question>
+                <question
+                    [questionId]="selectedQuestion"
+                    (reply)="onSelectReply($event)"></question>
         </div>
         <div class="responseInput">
             <div class="input-group">
@@ -18,6 +20,7 @@
         </div>
     </div>
 </div>
+{{response | json}}
 {{ selectedQuestion | json }}
 {{ questionList | json}}
 <!--

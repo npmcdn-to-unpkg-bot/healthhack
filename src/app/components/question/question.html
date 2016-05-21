@@ -1,7 +1,13 @@
 <div
+    *ngIf="question"
     class="question">
-    {{ question.question | json }}
+    {{ question.text}}
 </div>
-<div class="answer">
-    {{question | json }}
+<div class="responseWrapper">
+    <div
+        *ngFor="let response of responses"
+        class="response"
+        (click)="onClick($event)">
+        {{response}}
+    </div>
 </div>

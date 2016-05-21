@@ -15,6 +15,7 @@ import {QuestionComponent} from "../question/question";
 export class AppComponent implements OnInit{
     selectedQuestion:string;
     questionList:Array;
+    selectedReply:string;
 
     constructor(private _questionService:QuestionService) {
     }
@@ -25,6 +26,9 @@ export class AppComponent implements OnInit{
         });
     }
 
+    onSelectReply(reply) {
+        this.selectedReply = reply.reply;
+    }
 
     onSelectQuestion(question) {
         this.selectedQuestion = question.selectedQuestion;
