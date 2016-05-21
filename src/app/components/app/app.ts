@@ -3,11 +3,13 @@ import {ChatFormComponent} from '../chatForm/chatForm';
 import {MessageListComponent} from '../messageList/messageList';
 import {APP_SERVICES} from '../../services/services';
 import {QuestionService} from "../../services/questionService";
+import {QuestionListComponent} from "../questionList/questionList";
+import {QuestionComponent} from "../question/question";
 
 @Component({
     selector: 'pairedchatting-app',
     templateUrl: 'app/components/app/app.html',
-    directives: [ChatFormComponent, MessageListComponent],
+    directives: [ChatFormComponent, MessageListComponent, QuestionListComponent, QuestionComponent],
     providers: APP_SERVICES
 })
 export class AppComponent implements OnInit{
