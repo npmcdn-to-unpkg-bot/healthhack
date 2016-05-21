@@ -5,9 +5,9 @@
             [questionList]="questionList"></questionList>
     </div>
     <div class="myRightContainer">
-        <div class="mySelectedQuestion">
-            {{ question }}
-        </div>
+        <question [question]="selectedQuestion">
+
+        </question>
     </div>
 </div>
 {{ selectedQuestion | json }}

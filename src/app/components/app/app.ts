@@ -27,10 +27,7 @@ export class AppComponent implements OnInit{
 
 
     onSelectQuestion(question) {
-        console.log(question)
         this.selectedQuestion = question.selectedQuestion;
-        console.log(this.selectedQuestion)
-
     }
 
     public getQuestionList() {
