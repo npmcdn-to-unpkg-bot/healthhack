@@ -1,10 +1,10 @@
 <div class="panel panel-default">
-    <ul style="padding-left: 5px" >
-        <li *ngFor="let question of questionList" style="list-style-type: none; padding-left: 0"
+    <ul style="padding-left: 0" >
+        <li *ngFor="let question of questionList" style="list-style-type: none; padding: 10px"
             (click)="onClick($event)"
                 id="{{question._id}}"
-                class="panel-heading questionHeading">
-            {{ question.question }}
+                class="panel questionHeading well">
+            {{ question.question }} <br/> ({{ question.name }}, {{ question.created | unicodeToDate | date:'mediumTime' }})
         </li>
     </ul>
 
