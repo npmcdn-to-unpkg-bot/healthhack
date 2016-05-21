@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {ChatFormComponent} from '../chatForm/chatForm';
 import {MessageListComponent} from '../messageList/messageList';
 import {APP_SERVICES} from '../../services/services';
+import {QuestionService} from "../../services/questionService";
 
 @Component({
     selector: 'question',
@@ -9,7 +10,17 @@ import {APP_SERVICES} from '../../services/services';
     directives: [ChatFormComponent, MessageListComponent],
     providers: APP_SERVICES
 })
-export class QuestionComponent {
-    @Input()question:string;
+export class QuestionComponent implements OnChanges{
+    @Input()questionId = null;
+    question = {};
 
+    constructor(private _questionService: QuestionService) {}
+
+    ngOnChanges(){
+        this._questionService.getQuestionById(this.questionId)
+            .subscribe(question => {
+                console.log("call")
+                this.question = question;
+            });
+    }
 }

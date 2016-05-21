@@ -9,6 +9,11 @@ export class QuestionService {
     constructor(private _http: Http) {
     }
 
+    getQuestionById(id) {
+        return this._http.post(this._baseApi + '/queue/' + id , "")
+            .map(r => r.json());
+    }
+
     public list(): Observable<Array<string>> {
 
         return this._http.post(`${this._baseApi}/queueAll`, "")
