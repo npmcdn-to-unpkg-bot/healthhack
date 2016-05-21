@@ -4,19 +4,25 @@ import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class QuestionService {
-    private _baseApi: string = 'http://139.59.152.219:3000/bot';
+    private _baseApi:string = 'http://139.59.152.219:3000/bot';
 
-    constructor(private _http: Http) {
+    constructor(private _http:Http) {
     }
 
     getQuestionById(id) {
-        return this._http.post(this._baseApi + '/queue/' + id , "")
+        return this._http.post(this._baseApi + '/queue/' + id, "")
             .map(r => r.json());
     }
 
-    public list(): Observable<Array<string>> {
+    public list():Observable<Array<string>> {
 
         return this._http.post(`${this._baseApi}/queueAll`, "")
             .map(r => <Array<string>> r.json());
+    }
+
+    public answer(questionId, topic, selectedAnswer) {
+        var bodyPayload = "questionId=" + questionId + "&topic=" + topic + "&response=" + selectedAnswer;
+
+        return this._http.post(`${this._baseApi}/answer`, bodyPayload);
     }
 }

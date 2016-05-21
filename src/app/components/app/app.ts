@@ -12,18 +12,32 @@ import {QuestionComponent} from "../question/question";
     directives: [ChatFormComponent, MessageListComponent, QuestionListComponent, QuestionComponent],
     providers: APP_SERVICES
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
     selectedQuestion:string;
     questionList:Array;
     selectedReply:string;
 
+    firstnameArray = ["Jascha", "Leonard", "Michael", "David", "Wasili", "Mitja", "Patrick", "Lucas", "Michael", "Luana", "Ilja", "Tom", "Christian", "Peter", "Dimitri", "Leslie", "Lional", "Erhan", "William", "Franz", "Gunner", "Claus", "Eligiusz", "Matthias", "Bernhard", "Christian", "Frank", "Armin", "David", "Oliver"];
+    lastnameArray = ["Bahr", "Quintern", "Luthe", "Heinze", "Kek", "Kleider", "Kübler", "Schütz", "Staffa", "Stelz", "Sterz", "van Heyden", "von Hössle", "Bytschok", "Pan", "Weilbach", "Ervard", "Brückner", "Amann", "Arrergui", "Behan", "Gottmann", "Milford", "Pscherer", "Rust", "Schäfer", "Schönthaler", "Skvora", "Zahn"];
+
     constructor(private _questionService:QuestionService) {
     }
 
-    ngOnInit(){
-        this.getQuestionList().subscribe(list => {
-            this.questionList = list;
-        });
+    ngOnInit() {
+        this.getQuestionList()
+            .subscribe(list => {
+                for (var index = 0; index < list.length; index++) {
+                    list[index].name = this.randomName();
+                }
+                this.questionList = list;
+            });
+    }
+
+    randomName() {
+        var firstname = this.firstnameArray[Math.floor(Math.random() * this.firstnameArray.length)];
+        var lastname = this.lastnameArray[Math.floor(Math.random() * this.lastnameArray.length)];
+
+        return firstname + " " + lastname;
     }
 
     onSelectReply(reply) {
@@ -40,7 +54,6 @@ export class AppComponent implements OnInit{
 
     public periodicRefresh() {
         this.getQuestionList().subscribe(x => {
-            console.log(x)
             setTimeout(() => this.periodicRefresh(), 800);
 
         }, () => setTimeout(() => this.periodicRefresh(), 1000));
