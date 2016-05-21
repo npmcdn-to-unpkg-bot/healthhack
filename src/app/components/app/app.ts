@@ -13,6 +13,7 @@ import {QuestionComponent} from "../question/question";
     providers: APP_SERVICES
 })
 export class AppComponent implements OnInit {
+
     selectedQuestion:string;
     questionList:Array;
     selectedReply:string;
@@ -41,11 +42,18 @@ export class AppComponent implements OnInit {
     }
 
     onSelectReply(reply) {
+        console.log(reply)
         this.selectedReply = reply.reply;
+        this._questionService.answer(this.selectedQuestion, reply.topic, reply.reply);
     }
 
     onSelectQuestion(question) {
         this.selectedQuestion = question.selectedQuestion;
+    }
+
+    onReply(){
+        this._questionService.answer(this.selectedQuestion, "", this.selectedReply).subscribe();
+        this.selectedReply = null;
     }
 
     public getQuestionList() {

@@ -1,13 +1,19 @@
+{{ question | json }}
+
+
+
 <div
     *ngIf="question"
     class="question">
+    <div class="timeDisplay">
+        {{ question.created | unicodeToDate | date:'mediumTime' }}
+    </div>
     {{ question.text}}
 </div>
-<div class="responseWrapper">
-    <div
-        *ngFor="let response of responses"
-        class="response"
-        (click)="onClick($event)">
-        {{response}}
-    </div>
+<div
+    *ngFor="let response of responses"
+    class="response"
+    [id]="response.name"
+    (click)="onClick($event)"
+    [innerHTML]="response.response">
 </div>

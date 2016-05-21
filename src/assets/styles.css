@@ -18,7 +18,6 @@
 }
 
 .myRightContainer {
-    border: 1px blue solid;
     order: 2;
 }
 
@@ -55,4 +54,8 @@
 
 .responseInput {
     padding-top: 20px;
+}
+
+.timeDisplay {
+    color: #ffffff;
 }

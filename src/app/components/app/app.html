@@ -12,9 +12,16 @@
         </div>
         <div class="responseInput">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Please type an answer or select a proposal...">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Please type an answer or select a proposal..."
+                    value="{{selectedReply}}">
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Reply</button>
+                    <button
+                        class="btn btn-default"
+                        type="button"
+                        (click)="onReply()">Reply</button>
                   </span>
             </div>
         </div>
@@ -22,7 +29,6 @@
 </div>
 {{response | json}}
 {{ selectedQuestion | json }}
-{{ questionList | json}}
 <!--
         <pc-message-list></pc-message-list>
         <pc-chat-form></pc-chat-form>

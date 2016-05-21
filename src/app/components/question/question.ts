@@ -3,11 +3,13 @@ import {ChatFormComponent} from '../chatForm/chatForm';
 import {MessageListComponent} from '../messageList/messageList';
 import {APP_SERVICES} from '../../services/services';
 import {QuestionService} from "../../services/questionService";
+import {UnicodeToDatePipe} from "../../unicodetodate.pipe";
 
 @Component({
     selector: 'question',
     templateUrl: 'app/components/question/question.html',
     directives: [ChatFormComponent, MessageListComponent],
+    pipes: [UnicodeToDatePipe],
     providers: APP_SERVICES
 })
 export class QuestionComponent implements OnChanges{
@@ -18,18 +20,19 @@ export class QuestionComponent implements OnChanges{
 
     response;
     question;
-    responses = [];
+    responses;
 
     constructor(private _questionService: QuestionService) {}
 
     public onClick($event) {
-        console.log($event)
+        console.log($event.target.id);
         this.response = $event.target.innerHTML;
-        console.log("i should emit: ", $event.target.innerText, this.reply.emit, this.reply.emit({
-            reply: $event.target.innerText
-        }));
+
         this.reply.emit({
-            reply : $event.target.innerText
+            reply : $event.target.innerText,
+            topic: $event.target.id,
+            question : this.question,
+            responses : this.responses
         });
     }
 
@@ -40,12 +43,8 @@ export class QuestionComponent implements OnChanges{
         this._questionService.getQuestionById(this.questionId)
             .subscribe(question => {
                 this.question = question.question;
+                this.responses = question.responses
                 console.log(question, question.responses)
-                for (let property in question.responses) {
-                    if(question.responses.hasOwnProperty(property)) {
-                        this.responses.push(property);
-                    }
-                }
             });
     }
 }
