@@ -14,6 +14,7 @@ export class MessageListComponent {
     }
     
     public periodicRefresh() {
+        return;
         this._chatService.list() 
             .subscribe(list => {
                 this.messages = this.messages.concat(list);
