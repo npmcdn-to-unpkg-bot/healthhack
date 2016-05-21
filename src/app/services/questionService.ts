@@ -1,0 +1,17 @@
+import {Injectable} from '@angular/core';
+import {Http, Headers, Response, URLSearchParams} from '@angular/http';
+import {Observable} from 'rxjs/Rx';
+
+@Injectable()
+export class QuestionService {
+    private _baseApi: string = 'http://139.59.152.219:3000/bot/';
+
+    constructor(private _http: Http) {
+    }
+
+    public list(): Observable<Array<string>> {
+
+        return this._http.post(`${this._baseApi}/queueAll`, "")
+            .map(r => <Array<string>> r.json());
+    }
+}
