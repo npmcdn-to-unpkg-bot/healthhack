@@ -21,8 +21,11 @@ export class QuestionService {
     }
 
     public answer(questionId, topic, selectedAnswer) {
-        var bodyPayload = "questionId=" + questionId + "&topic=" + topic + "&response=" + selectedAnswer;
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        console.log(questionId + " ++ " + topic  + " ++ " +  selectedAnswer)
+        var bodyPayload = "questionId=" + questionId + "&topic=" + topic + "&response=" + "'" + selectedAnswer + "'";
 
-        return this._http.post(`${this._baseApi}/answer`, bodyPayload);
+        return this._http.post(`${this._baseApi}/answer`, bodyPayload, headers);
     }
 }
