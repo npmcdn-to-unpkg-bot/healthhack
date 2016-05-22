@@ -24,7 +24,7 @@ export class QuestionService {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         console.log(questionId + " ++ " + topic  + " ++ " +  selectedAnswer);
-        var bodyPayload = "questionId=" + questionId + "&topic=" + topic + "&response=" + "'" + selectedAnswer + "'";
+        var bodyPayload = "questionId=" + questionId + "&topic=" + topic + "&response="  + selectedAnswer;
 
         return this._http.post(`${this._baseApi}/answer`, bodyPayload, { headers: headers});
     }
