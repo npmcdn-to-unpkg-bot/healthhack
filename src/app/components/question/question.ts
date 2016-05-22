@@ -43,7 +43,7 @@ export class QuestionComponent implements OnChanges{
         this._questionService.getQuestionById(this.questionId)
             .subscribe(question => {
                 this.question = question.question;
-                this.responses = question.responses
+                this.responses = question.responses;
                 console.log(question, question.responses)
             });
     }

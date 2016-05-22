@@ -1,10 +1,12 @@
 <div class="myContainer">
     <div class="myLeftContainer">
+        <h2>Questions</h2>
         <questionList
             (questionSelect)="onSelectQuestion($event)"
             [questionList]="questionList"></questionList>
     </div>
     <div class="myRightContainer">
+        <h2>Chat</h2>
         <div class="messageDisplay">
                 <question
                     [questionId]="selectedQuestion"

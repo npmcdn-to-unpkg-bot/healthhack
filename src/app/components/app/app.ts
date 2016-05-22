@@ -5,6 +5,7 @@ import {APP_SERVICES} from '../../services/services';
 import {QuestionService} from "../../services/questionService";
 import {QuestionListComponent} from "../questionList/questionList";
 import {QuestionComponent} from "../question/question";
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'pairedchatting-app',
@@ -21,17 +22,23 @@ export class AppComponent implements OnInit {
     firstnameArray = ["Jascha", "Leonard", "Michael", "David", "Wasili", "Mitja", "Patrick", "Lucas", "Michael", "Luana", "Ilja", "Tom", "Christian", "Peter", "Dimitri", "Leslie", "Lional", "Erhan", "William", "Franz", "Gunner", "Claus", "Eligiusz", "Matthias", "Bernhard", "Christian", "Frank", "Armin", "David", "Oliver"];
     lastnameArray = ["Bahr", "Quintern", "Luthe", "Heinze", "Kek", "Kleider", "Kübler", "Schütz", "Staffa", "Stelz", "Sterz", "van Heyden", "von Hössle", "Bytschok", "Pan", "Weilbach", "Ervard", "Brückner", "Amann", "Arrergui", "Behan", "Gottmann", "Milford", "Pscherer", "Rust", "Schäfer", "Schönthaler", "Skvora", "Zahn"];
 
-    constructor(private _questionService:QuestionService) {
+    constructor(private _questionService:QuestionService, private _router: Router) {
     }
 
     ngOnInit() {
         this.getQuestionList()
-            .subscribe(list => {
-                for (var index = 0; index < list.length; index++) {
-                    list[index].name = this.randomName();
-                }
-                this.questionList = list;
-            });
+            .subscribe(
+                list => {
+                    for (var index = 0; index < list.length; index++) {
+                        list[index].name = this.randomName();
+                    }
+                    this.questionList = list;
+                },
+                err => {
+                    if (err.status == 400 && this.questionList.length > 0) {
+                        window.location.reload();
+                    }
+                });
     }
 
     randomName() {
@@ -52,13 +59,12 @@ export class AppComponent implements OnInit {
     }
 
 
-    onReply(){
-        // todo: get the real topic name for the second parameter
-        this._questionService.answer(this.selectedQuestion, "testfuckit", this.selectedReply).subscribe(
+    onReply() {
+        this._questionService.answer(this.selectedQuestion, "thisThaTopic", this.selectedReply).subscribe(
             data => {
                 this.selectedQuestion = null;
                 this.selectedReply = null;
-                this.ngOnInit()
+                this.ngOnInit();
             },
             () => console.log("Request done.")
         );
@@ -69,7 +75,7 @@ export class AppComponent implements OnInit {
     }
 
 
-    // todo: wtf is this method supposed to do? it's only calling itself
+    // todo: what is this method supposed to  do? it's only calling itself
     public periodicRefresh() {
         this.getQuestionList().subscribe(x => {
             setTimeout(() => this.periodicRefresh(), 800);
