@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     }
 
     onSelectReply(reply) {
-        console.log(reply)
+        console.log(reply);
         this.selectedReply = reply.reply;
         this._questionService.answer(this.selectedQuestion, reply.topic, reply.reply);
     }
@@ -51,16 +51,25 @@ export class AppComponent implements OnInit {
         this.selectedQuestion = question.selectedQuestion;
     }
 
+
     onReply(){
         // todo: get the real topic name for the second parameter
-        this._questionService.answer(this.selectedQuestion, "testfuckit", this.selectedReply).subscribe();
-        this.selectedReply = null;
+        this._questionService.answer(this.selectedQuestion, "testfuckit", this.selectedReply).subscribe(
+            data => {
+                this.selectedQuestion = null;
+                this.selectedReply = null;
+                this.ngOnInit()
+            },
+            () => console.log("Request done.")
+        );
     }
 
     public getQuestionList() {
         return this._questionService.list();
     }
 
+
+    // todo: wtf is this method supposed to do? it's only calling itself
     public periodicRefresh() {
         this.getQuestionList().subscribe(x => {
             setTimeout(() => this.periodicRefresh(), 800);
