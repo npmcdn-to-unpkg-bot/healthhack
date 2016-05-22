@@ -52,7 +52,8 @@ export class AppComponent implements OnInit {
     }
 
     onReply(){
-        this._questionService.answer(this.selectedQuestion, "", this.selectedReply).subscribe();
+        // todo: get the real topic name for the second parameter
+        this._questionService.answer(this.selectedQuestion, "testfuckit", this.selectedReply).subscribe();
         this.selectedReply = null;
     }
 
